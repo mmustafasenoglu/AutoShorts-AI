@@ -21,3 +21,8 @@ chrome_profile/
 # Logs & Errors
 *.log
 *.png
+
+# Other scripts
+tiktok_*.py
+test_uc.py
+KURULUM.md
