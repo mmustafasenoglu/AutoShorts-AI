@@ -1,40 +1,58 @@
-# 🤖 YouTube AI News Automation Bot 🚀
+# 🤖 AutoShorts-AI: YouTube AI News Automation Bot 🚀
 
-Bu proje, yapay zeka gündemini takip eden, popüler "Yapay Zeka" haberlerini otomatik olarak bulan ve bunlardan dikkat çekici YouTube Shorts videoları oluşturarak **YouTube hesabınıza otomatik yükleyen** tam teşekküllü bir bot otomasyonudur. 
+A fully automated Python bot that tracks the latest AI trends, generates engaging YouTube Shorts videos, and auto-uploads them directly to your YouTube channel.
 
-## ⚡ Neler Yapıyor?
+## ⚡ Features
 
-1. **📰 Haberi Bulur:** Google News NLP, AI, ChatGPT, Anthropic gibi konulardaki en güncel haberleri otomatik tarar.
-2. **🖼️ Görsel Oluşturur/Bulur:** Haber başlığına uygun bir arka plan görselini (Unsplash üzerinden) arar.
-3. **🎵 Müzik Ekler:** Videoya Freesound üzerinden arka plana estetik bir ses/müzik yerleştirir.
-4. **✏️ Video Montajı:** FFmpeg kullanarak görselin üzerine dikkat çekici bir metin animasyonu ve ses ekler.
-5. **🎬 Otomatik YouTube Upload:** Oluşturulan bu kısa videoyu (Shorts formatında) başlık, açıklama ve SEO uyumlu etiketlerle belirlediğiniz YouTube kanalına yükler.
-6. **💬 İlk Yorumu Atar:** Videonun altına otomatik olarak etkileşim artırıcı "İlk yorum benden, haber hakkında ne düşünüyorsunuz?" tarzı yorumlar bırakır.
+1. **📰 Fetches News:** Scans Google News for the latest updates on Artificial Intelligence, ChatGPT, Anthropic, Gemini, etc.
+2. **🖼️ Background Generation:** Finds an aesthetic background image related to the topic via the Unsplash API.
+3. **🎵 Adds Music:** Fetches a copyright-free, aesthetic ambient track from Freesound.
+4. **✏️ Video Editing:** Uses FFmpeg to merge the image, sound, and a dynamic text overlay into a 9:16 vertical video suitable for YouTube Shorts.
+5. **🎬 Auto Upload:** Uploads the generated Short directly to YouTube using the YouTube Data API v3 with a title, description, and SEO tags.
+6. **💬 First Comment:** Automatically leaves a first comment to increase viewer engagement.
 
-## 🛠️ Kurulum Gereksinimleri
+## 🛠️ Prerequisites
 
-- Python 3.10+
-- FFmpeg (Sistemde yüklü ve ortam değişkenlerine eklenmiş olması gerekmektedir)
-- Google Cloud - YouTube Data API v3 yetkilendirmesi (`client_secret.json`)
-- Freesound ve Unsplash API keyleri
-- Yüklü Python kütüphaneleri (Detaylar `requirements.txt` dosyasındadır)
+Before you begin, ensure you have met the following requirements:
+- **Python 3.10+** installed on your system.
+- **FFmpeg** installed and added to your system's PATH.
+- **Google Cloud Account** with the **YouTube Data API v3** enabled. You must download the OAuth 2.0 Credentials as `client_secret.json`.
+- **Freesound API Key** (Free from freesound.org)
+- **Unsplash API Key** (Free from unsplash.com/developers)
 
-## 🚀 Çalıştırma
+## 🚀 Installation & How to Run
 
-Gerekli `.env` ayarlarını yaptıktan ve `client_secret.json` dosyasını ana dizine koyduktan sonra botu çalıştırmak çok basit:
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/mmustafasenoglu/AutoShorts-AI.git
+   cd AutoShorts-AI
+   ```
 
-```bash
-# İlk önce paketleri kurun
-pip install -r requirements.txt
+2. **Install dependencies:**
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-# YouTube botunu başlatın
-python news_bot.py
-```
+3. **Set up environment variables:**
+   Create a `.env` file in the root directory of the project and add your API keys:
+   ```env
+   FREESOUND_API_KEY=your_freesound_api_key_here
+   UNSPLASH_API_KEY=your_unsplash_api_key_here
+   ```
 
-## 🔒 Güvenlik Notu
-Bu repo içerisinde `client_secret.json`, `token.json` veya API kodlarınızı dahil etmeyin. Git'e dahil edilmesini engellemek için `.gitignore` dosyasını mutlaka kullanın!
+4. **Add your YouTube API Credentials:**
+   Place your `client_secret.json` file (downloaded from Google Cloud Console) into the root directory of the project.
+
+5. **Run the bot:**
+   ```bash
+   python news_bot.py
+   ```
+   *Note: On the first run, a browser window will open asking you to log into your Google Account to authorize the YouTube upload. This will generate a `token.json` file for future automated runs.*
+
+## 🔒 Security Note
+Never commit your `client_secret.json`, `token.json`, or `.env` files to GitHub. This repository already includes a `.gitignore` file to prevent accidental uploads of your sensitive credentials.
 
 ---
 
-🔥 **Hashtags:**
-#YouTubeBot #YouTubeAutomation #AI #ChatGPT #OpenAI #YouTubeAPI #Python #PythonBot #Automation #GoogleNewsBot #VideoGenerator #VideoCreator #AutoUpload #FFmpeg #Code #OpenSource #Dev #Software #Developers #Tech #TechNews #Programming #GitHub #Project #Shorts #YouTubeShorts #ShortsAutomation #Anthropic #Claude #Gemini #Freesound #Unsplash #ContentCreator #Bot #YapayZeka #YapayZekaGündemi #TeknolojiHaberleri #Yazılım
+🔥 **Tags:**
+#YouTubeBot #YouTubeAutomation #AI #ChatGPT #OpenAI #YouTubeAPI #Python #PythonBot #Automation #GoogleNewsBot #VideoGenerator #VideoCreator #AutoUpload #FFmpeg #OpenSource #TechNews #YouTubeShorts #ShortsAutomation #Freesound #Unsplash #ContentCreator
