@@ -1,0 +1,23 @@
+# API keys & Environments
+.env
+
+# Google API
+client_secret.json
+token.json
+
+# Dependencies
+venv/
+__pycache__/
+*.pyc
+
+# Local data & Temporary files
+temp/
+history.txt
+chrome_profile/
+
+# System files
+.DS_Store
+
+# Logs & Errors
+*.log
+*.png
