@@ -11,5 +11,6 @@ services:
       - ./client_secret.json:/app/client_secret.json
       - ./token.json:/app/token.json
       - ./scheduled_slots.json:/app/scheduled_slots.json
+      - ./cookies.txt:/app/cookies.txt
       - ./videos:/app/videos
       - ./output:/app/output

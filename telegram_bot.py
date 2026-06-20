@@ -57,6 +57,9 @@ def download_and_schedule(url):
         'merge_output_format': 'mp4',
         'quiet': True,
     }
+    
+    if os.path.exists('cookies.txt'):
+        ydl_opts['cookiefile'] = 'cookies.txt'
 
     print(f"[*] Bilgiler çekiliyor: {url}")
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
