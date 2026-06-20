@@ -50,14 +50,15 @@ async def process_video(update: Update, url: str):
 
 def download_and_schedule(url):
     os.makedirs('videos', exist_ok=True)
+    # Datacenter IPs (Contabo etc.) are blocked from DASH streams by YouTube.
+    # We must use progressive (pre-merged) formats only.
+    # 18 = 480p mp4 progressive, 22 = 720p mp4 progressive
     ydl_opts = {
+        'format': '22/18/best[ext=mp4]/best',
         'outtmpl': 'videos/%(title)s.%(ext)s',
         'noplaylist': True,
         'quiet': True,
-        'postprocessors': [{
-            'key': 'FFmpegVideoConvertor',
-            'preferedformat': 'mp4',
-        }],
+        'merge_output_format': 'mp4',
     }
     
     if os.path.exists('cookies.txt'):
