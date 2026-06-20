@@ -59,6 +59,13 @@ def download_and_schedule(url):
         'noplaylist': True,
         'quiet': True,
         'merge_output_format': 'mp4',
+        # Use Android client to bypass JS signature solving (works on datacenter IPs)
+        'extractor_args': {
+            'youtube': {
+                'player_client': ['android', 'web'],
+            }
+        },
+        'js_runtimes': ['nodejs'],
     }
     
     if os.path.exists('cookies.txt'):
