@@ -65,7 +65,6 @@ def download_and_schedule(url):
                 'player_client': ['android', 'web'],
             }
         },
-        'js_runtimes': ['nodejs'],
     }
     
     if os.path.exists('cookies.txt'):
