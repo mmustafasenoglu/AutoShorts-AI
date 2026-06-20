@@ -60,15 +60,13 @@ def download_and_schedule(url):
         'quiet': True,
         'merge_output_format': 'mp4',
         # Use Android client to bypass JS signature solving (works on datacenter IPs)
+        # Note: Android client does NOT support cookies, so we don't pass them
         'extractor_args': {
             'youtube': {
-                'player_client': ['android', 'web'],
+                'player_client': ['android'],
             }
         },
     }
-    
-    if os.path.exists('cookies.txt'):
-        ydl_opts['cookiefile'] = 'cookies.txt'
 
     print(f"[*] Bilgiler çekiliyor: {url}")
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
