@@ -51,7 +51,7 @@ async def process_video(update: Update, url: str):
 def download_and_schedule(url):
     os.makedirs('videos', exist_ok=True)
     ydl_opts = {
-        'format': 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best',
+        'format': 'bestvideo+bestaudio/best',
         'outtmpl': 'videos/%(title)s.%(ext)s',
         'noplaylist': True,
         'merge_output_format': 'mp4',
