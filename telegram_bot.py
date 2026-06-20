@@ -51,11 +51,13 @@ async def process_video(update: Update, url: str):
 def download_and_schedule(url):
     os.makedirs('videos', exist_ok=True)
     ydl_opts = {
-        'format': 'b',
         'outtmpl': 'videos/%(title)s.%(ext)s',
         'noplaylist': True,
-        'merge_output_format': 'mp4',
         'quiet': True,
+        'postprocessors': [{
+            'key': 'FFmpegVideoConvertor',
+            'preferedformat': 'mp4',
+        }],
     }
     
     if os.path.exists('cookies.txt'):
