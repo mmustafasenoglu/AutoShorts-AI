@@ -73,16 +73,23 @@ def download_and_upload(url):
         is_tiktok_or_insta = "tiktok.com" in url.lower() or "instagram.com" in url.lower()
         
         # Shorts detection and tag insertion
+        append_shorts = False
         if (duration <= 60 or is_tiktok_or_insta) and "#shorts" not in description.lower() and "#shorts" not in title.lower():
-            title = f"{title} #Shorts"
+            append_shorts = True
             if tags is None:
                 tags = []
             if "shorts" not in [t.lower() for t in tags]:
                 tags.append("shorts")
                 
-        # Limit description and title length if necessary (YouTube limits: Title 100, Description 5000)
-        if len(title) > 100:
-            title = title[:97] + "..."
+        # Limit description and title length if necessary (YouTube limits: Title 100)
+        if append_shorts:
+            # We need 8 chars for " #Shorts"
+            if len(title) > 92:
+                title = title[:89] + "..."
+            title = f"{title} #Shorts"
+        else:
+            if len(title) > 100:
+                title = title[:97] + "..."
 
         # Rewrite description using Groq AI to make it similar but unique
         print(f"[🤖] Açıklama Groq AI ile yeniden yazılıyor...")

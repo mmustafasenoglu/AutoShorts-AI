@@ -12,6 +12,8 @@ This project is a Python automation tool that allows you to optionally change th
 - **Logo Hiding (Optional):** If the original video has an unwanted watermark or logo, you can obscure this area by placing a black bar or writing text over it between specific timestamps.
 - **AI Channel Analytics (GUI):** A built-in PyQt6 desktop interface that integrates with Groq AI to analyze your recent YouTube uploads (views, likes) and provide smart recommendations on titles, posting times, and content strategy.
 - **TikTok & Instagram Support:** Automatically detects TikTok and Instagram video links via `yt-dlp` and enforces them to be uploaded as Shorts.
+- **Telegram Bot & Queue Scheduling:** A built-in Telegram Bot allows you to send video links from anywhere. The bot will automatically queue them and schedule their YouTube publish times for specific slots (10:00, 15:00, 20:00) using the YouTube Data API.
+- **Docker Ready:** Easily deploy the entire system (including the bot and ffmpeg dependencies) to any Linux server or VPS using Docker Compose for 24/7 uptime.
 
 ## 📂 Project Structure
 
@@ -23,11 +25,14 @@ This project is a Python automation tool that allows you to optionally change th
 - `tiktok_uploader.py` : The core Playwright module that handles automatic video uploading and sharing to TikTok Studio.
 - `youtube_auth.py` : Handles YouTube API OAuth 2.0 authentication and core video uploading logic.
 - `upload_one_video.py` : A simple helper script to quickly upload a single video to YouTube without modifying the background.
+- `telegram_bot.py` : The Telegram bot script that listens for messages, downloads videos via `yt-dlp`, and queues them for scheduled uploading.
+- `schedule_manager.py` : A queue manager that calculates the next available publishing slot (10:00, 15:00, 20:00).
+- `Dockerfile` & `docker-compose.yml` : Files needed to deploy the bot smoothly to a server via Docker.
 - `videos/` : The directory where you can place your original lyrics videos or where downloaded videos are stored.
 - `output/` : The directory where final rendered videos with replaced backgrounds are saved.
 - `backgrounds/` : The directory for storing your custom background files.
 - `client_secret.json` : Your YouTube Data API v3 authorization file obtained via Google Cloud Console.
-- `.env` : Configuration file containing private keys such as Unsplash API and Groq API keys.
+- `.env` : Configuration file containing private keys such as Unsplash API, Telegram Bot Token, and Groq API keys.
 
 ## ⚙️ Setup and Requirements
 
@@ -85,6 +90,16 @@ To view all commands:
 ```bash
 python upload_lyrics.py --help
 ```
+
+### 4. Telegram Bot (Server Deployment)
+To run the Telegram Bot 24/7 on a Linux server:
+1. Ensure your `.env` file contains `TELEGRAM_BOT_TOKEN`.
+2. Ensure you have `client_secret.json` and `token.json` in the folder.
+3. Run with Docker Compose:
+```bash
+docker-compose up -d --build
+```
+The bot will now run in the background and wait for your messages on Telegram.
 
 ## ⚠️ Important Notes
 

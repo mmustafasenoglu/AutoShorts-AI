@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  bot:
+    build: .
+    container_name: lyrics_uploader_bot
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - ./client_secret.json:/app/client_secret.json
+      - ./token.json:/app/token.json
+      - ./scheduled_slots.json:/app/scheduled_slots.json
+      - ./videos:/app/videos
+      - ./output:/app/output
