@@ -58,17 +58,11 @@ def download_and_schedule(url):
         'outtmpl': 'videos/%(title)s.%(ext)s',
         'noplaylist': True,
         'quiet': True,
-        'merge_output_format': 'mp4',
-        # iOS client supports cookies AND bypasses JS signature solving
-        'extractor_args': {
-            'youtube': {
-                'player_client': ['ios', 'android'],
-            }
-        },
+        'postprocessors': [{
+            'key': 'FFmpegVideoConvertor',
+            'preferedformat': 'mp4',
+        }],
     }
-
-    if os.path.exists('cookies.txt'):
-        ydl_opts['cookiefile'] = 'cookies.txt'
 
     print(f"[*] Bilgiler çekiliyor: {url}")
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
